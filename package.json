@@ -1,0 +1,46 @@
+{
+  "name": "mobx-react-todo-example-forms-fetch-async",
+  "description": "Example ToDo list ->  MobX + React + Google Calendar API",
+  "homepage": "http://mobx-react-todo.it-efrem.com/",
+  "author": "IT Efrem",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Evgeny-Bukovski/MobX-React-ToDo-Example-forms-fetch-async.git"
+  },
+  "keywords": [
+    "react",
+    "mobx",
+    "example",
+    "todo",
+    "list",
+    "google",
+    "calendar",
+    "api"
+  ],
+  "browserslist": "> 5%, not dead",
+  "version": "0.1.0",
+  "scripts": {
+    "clean": "rm -rf build && rm -rf node_modules",
+    "install": "npm ci",
+    "server": "nodemon ./src/server.js",
+    "start": "npm run clean && npm run install && webpack --mode production --colors && npm run server",
+    "dev": "webpack --mode development --watch --colors"
+  },
+  "dependencies": {
+    "@babel/preset-env": "^7.8.4",
+    "@babel/preset-react": "^7.8.3",
+    "babel-loader": "^8.0.6",
+    "file-loader": "^5.0.2",
+    "koa": "^2.11.0",
+    "nodemon": "^2.0.2",
+    "react": "^16.12.0",
+    "webpack": "^4.41.5"
+  },
+  "devDependencies": {
+    "@babel/plugin-transform-react-jsx": "^7.8.3",
+    "@babel/plugin-transform-strict-mode": "^7.8.3",
+    "babel-preset-minify": "^0.5.1",
+    "source-map-loader": "^0.2.4"
+  }
+}

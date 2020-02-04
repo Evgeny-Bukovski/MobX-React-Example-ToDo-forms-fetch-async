@@ -1,1 +1,3 @@
-# MobX-React-Example-ToDo-forms-fetch-async
+# MobX React ToDo example
+
+Example ToDo list ->  MobX + React + Google Calendar API
