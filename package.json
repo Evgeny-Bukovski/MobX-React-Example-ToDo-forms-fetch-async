@@ -18,23 +18,27 @@
     "calendar",
     "api"
   ],
-  "browserslist": "> 5%, not dead",
+  "browserslist": "> 0.25%, not dead",
   "version": "0.1.0",
   "scripts": {
     "clean": "rm -rf build && rm -rf node_modules",
-    "install": "npm ci",
     "server": "nodemon ./src/server.js",
-    "start": "npm run clean && npm run install && webpack --mode production --colors && npm run server",
+    "start": "npm run clean && npm сi && webpack --mode production --colors && npm run server",
     "dev": "webpack --mode development --watch --colors"
   },
   "dependencies": {
+    "@babel/plugin-proposal-decorators": "^7.8.3",
     "@babel/preset-env": "^7.8.4",
     "@babel/preset-react": "^7.8.3",
     "babel-loader": "^8.0.6",
     "file-loader": "^5.0.2",
     "koa": "^2.11.0",
+    "mobx": "^5.15.4",
+    "mobx-react": "^6.1.4",
     "nodemon": "^2.0.2",
+    "npm": "^6.13.7",
     "react": "^16.12.0",
+    "react-dom": "^16.12.0",
     "webpack": "^4.41.5"
   },
   "devDependencies": {

@@ -5,7 +5,13 @@
     "minify"
   ],
   "plugins": [
+    ["@babel/plugin-proposal-decorators", { "legacy": true }],
     "@babel/plugin-transform-react-jsx",
     "@babel/plugin-transform-strict-mode"
-  ]
+  ],
+  "env": {
+    "development" : {
+      "compact": false
+    }
+  }
 }
