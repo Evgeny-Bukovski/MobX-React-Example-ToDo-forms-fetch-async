@@ -7,23 +7,27 @@ import {CreateItem} from "../../components/CreateItem";
 
 export const ItemList = observer(
     () => {
-        // useEffect(() => {
-        //     console.log('ItemList', 'Mount');
-        //
-        //     return () => {
-        //         console.log('ItemList', 'UNMount');
-        //     }
-        // }, []);
+        useEffect(() => {
+            console.log('ItemList', 'Mount');
+
+            return () => {
+                console.log('ItemList', 'UNMount');
+            }
+        }, []);
 
         console.log('ItemList', 'Render');
 
         return (
             <div>
                 {
-                    store.map(Item)
+                    store.map(listMap)
                 }
                 <CreateItem/>
             </div>
-        )
+        );
+
+        function listMap(item) {
+            return <Item {...item}/>
+        }
     }
 );

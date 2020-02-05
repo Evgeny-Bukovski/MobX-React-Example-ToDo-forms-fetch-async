@@ -4,7 +4,6 @@ import {changeHandler} from '../../helpers/changeHandler';
 
 export function Item({isCompleted, title, description, key}) {
 
-    // Error !!!
     useEffect(() => {
         console.log('Item', 'Mount');
 
@@ -38,4 +37,4 @@ export function Item({isCompleted, title, description, key}) {
     function onChange(name, value) {
         editTodo(key, name, value)
     }
-}
+};

@@ -7,13 +7,13 @@ export function CreateItem() {
     const [startTime, setStartTime] = useState(null);
     const [endTime, setEndTime] = useState(null);
 
-    // useEffect(() => {
-    //     console.log('CreateItem', 'Mount');
-    //
-    //     return () => {
-    //         console.log('CreateItem', 'UNMount');
-    //     }
-    // }, []);
+    useEffect(() => {
+        console.log('CreateItem', 'Mount');
+
+        return () => {
+            console.log('CreateItem', 'UNMount');
+        }
+    }, []);
 
     console.log('CreateItem', 'Render');
 
