@@ -1,33 +1,41 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {observer} from "mobx-react";
-import {store} from '../../store/index';
 
 import {Item} from "../../components/Item";
-import {CreateItem} from "../../components/CreateItem";
+import {watcher} from "../../helpers/watcher";
+import {getOrderedList} from "../../store";
 
-export const ItemList = observer(
+export const ItemList = watcher(observer(
     () => {
-        useEffect(() => {
-            console.log('ItemList', 'Mount');
-
-            return () => {
-                console.log('ItemList', 'UNMount');
-            }
-        }, []);
-
-        console.log('ItemList', 'Render');
-
         return (
             <div>
                 {
-                    store.map(listMap)
+                    renderListWithDate(getOrderedList())
                 }
-                <CreateItem/>
             </div>
         );
-
-        function listMap(item) {
-            return <Item {...item}/>
-        }
     }
-);
+), 'ItemList');
+
+function renderListWithDate(list) {
+    const listWithDate = [];
+    let lastDate;
+
+    list.forEach((item) => {
+        const {date, id} = item;
+
+        if (lastDate !== date) {
+            lastDate = date;
+            listWithDate.push(
+                <React.Fragment key={id}>
+                    <p>Date {date}</p>
+                    <Item {...item}/>
+                </React.Fragment>
+            );
+        } else {
+            listWithDate.push(<Item {...item} key={id}/>);
+        }
+    });
+
+    return listWithDate;
+}

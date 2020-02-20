@@ -3,7 +3,7 @@ const path = require('path');
 module.exports = {
     devtool: "source-map",
     entry: {
-        main: "./src/changeHandler.js"
+        main: "./src/index.js"
     },
     output: {
         path: path.resolve(__dirname, 'build'),

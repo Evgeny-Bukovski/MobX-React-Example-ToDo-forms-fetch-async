@@ -1,74 +1,69 @@
-import React, {useState, useEffect} from 'react';
-import {addTodo} from "../../store";
+import React, {useState} from 'react';
+import {observer} from "mobx-react";
+import {addTodo, removedItems, restoreLastToDo} from "../../store";
+import {watcher} from "../../helpers/watcher";
 
-export function CreateItem() {
-    const [title, setTitle] = useState('');
-    const [description, setDescription] = useState('');
-    const [startTime, setStartTime] = useState(null);
-    const [endTime, setEndTime] = useState(null);
+const initialTitle = '';
+const initialDescription = '';
+const initialDate = '';
 
-    useEffect(() => {
-        console.log('CreateItem', 'Mount');
+export const CreateItem = watcher(observer(() => {
+        const [title, setTitle] = useState(initialTitle);
+        const [description, setDescription] = useState(initialDescription);
+        const [date, setDate] = useState(initialDate);
 
-        return () => {
-            console.log('CreateItem', 'UNMount');
+        return (
+            <div>
+                <input type="text"
+                       name="title"
+                       value={title}
+                       onChange={onChange}/>
+
+                <input type="textarea"
+                       name="description"
+                       value={description}
+                       onChange={onChange}/>
+
+                {/*<input type="datetime-local"*/}
+                <input type="text"
+                       name="date"
+                       value={date}
+                       onChange={onChange}/>
+
+                <button onClick={addTodoHandler}>Add task</button>
+                {
+                    removedItems.length ? <button onClick={restoreLastToDo}>Restore</button> : null
+                }
+            </div>
+        );
+
+        //ToDO: Rename?
+        function onChange(e) {
+            const {name, value} = e.target;
+
+            switch (name) {
+                case 'title':
+                    setTitle(value);
+                    break;
+                case 'description':
+                    setDescription(value);
+                    break;
+                case 'date':
+                    setDate(value);
+                    break;
+            }
         }
-    }, []);
 
-    console.log('CreateItem', 'Render');
+        function addTodoHandler() {
+            setTitle(initialTitle);
+            setDescription(initialDescription);
+            setDate(initialDate);
 
-    return (
-        <div>
-            <input type="text"
-                   name="title"
-                   value={title}
-                   onChange={onChange}/>
-
-            <input type="textarea"
-                   name="description"
-                   value={description}
-                   onChange={onChange}/>
-
-            <input type="datetime-local"
-                   name="startTime"
-                   value={startTime}
-                   onChange={onChange}/>
-
-            <input type="datetime-local"
-                   name="endTime"
-                   value={endTime}
-                   onChange={onChange}/>
-
-            <button onClick={addTodoHandler}>Add task</button>
-        </div>
-    );
-
-    //ToDO: Rename?
-    function onChange(e) {
-        const {name, value} = e.target;
-
-        switch (name) {
-            case 'title':
-                setTitle(value);
-                break;
-            case 'description':
-                setDescription(value);
-                break;
-            case 'startTime':
-                setStartTime(value);
-                break;
-            case 'endTime':
-                setEndTime(value);
-                break;
+            addTodo({
+                title,
+                description,
+                date,
+            })
         }
     }
-
-    function addTodoHandler() {
-        addTodo({
-            title,
-            description,
-            startTime,
-            endTime,
-        })
-    }
-}
+), 'CreateItem');
